@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Raleway } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Raleway({
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: "Lama Dev School Management Dashboard",
+  title: "School Management Dashboard",
   description: "Next.js School Management System",
 };
 
@@ -16,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={font.className}>{children}</body>
     </html>
   );
 }
