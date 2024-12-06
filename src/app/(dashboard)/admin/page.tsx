@@ -1,5 +1,7 @@
+import Announcements from "@/components/announcements";
 import AttendancChart from "@/components/attendance-chart";
 import CountChart from "@/components/count-chart";
+import EventCalendar from "@/components/event-calendar";
 import FinanceChart from "@/components/finance-chart";
 import UserCard from "@/components/user-card";
 
@@ -34,7 +36,10 @@ export default function AdminPage() {
         </div>
       </section>
       {/* SIDEBAR SECTION */}
-      <aside className="w-full lg:w-1/3">Sidebar Content</aside>
+      <aside className="w-full lg:w-1/3 flex flex-col gap-8">
+        <EventCalendar />
+        <Announcements />
+      </aside>
     </section>
   );
 }
