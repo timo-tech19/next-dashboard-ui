@@ -119,10 +119,10 @@ const menuItems = [
 
 const Menu = () => {
   return (
-    <div className="mt-4 text-sm">
+    <div className="mt-2 text-sm">
       {menuItems.map((menuitem) => (
         <div className="flex flex-col gap-2" key={menuitem.title}>
-          <h6 className="hidden lg:block text-gray-400 font-light my-4">
+          <h6 className="hidden lg:block text-gray-400 font-light my-2">
             {menuitem.title}
           </h6>
           {menuitem.items.map((itemlink) => {

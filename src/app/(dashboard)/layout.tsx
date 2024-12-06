@@ -24,7 +24,7 @@ export default function DashBoardLayout({
       </aside>
 
       {/* MAIN CONTENT */}
-      <section className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] bg-light overscroll-scroll">
+      <section className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] bg-light overflow-y-scroll flex flex-col">
         <Navbar />
         {children}
       </section>
