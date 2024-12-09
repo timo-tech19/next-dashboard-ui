@@ -1,6 +1,7 @@
 import Announcements from "@/components/announcements";
 import BigCalendar from "@/components/big-calendar";
 import Performance from "@/components/performance";
+import { studentsData } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -121,7 +122,10 @@ const SingleStudentPage = () => {
             <Link className="p-3 rounded-md bg-primaryLight" href="/">
               Student&apos;s Lessons
             </Link>
-            <Link className="p-3 rounded-md bg-secondary-light" href="/">
+            <Link
+              className="p-3 rounded-md bg-secondary-light"
+              href={`/list/teachers/?classId=${2}`}
+            >
               Student&apos;s Teachers
             </Link>
             <Link className="p-3 rounded-md bg-pink-50" href="/">
