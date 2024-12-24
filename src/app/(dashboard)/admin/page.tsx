@@ -1,11 +1,15 @@
 import Announcements from "@/components/announcements";
 import AttendanceChartContainer from "@/components/attendance-chart-container";
 import CountChartContainer from "@/components/count-chart-container";
-import EventCalendar from "@/components/event-calendar";
+import EventCalendarContainer from "@/components/event-calendar-container";
 import FinanceChart from "@/components/finance-chart";
 import UserCard from "@/components/user-card";
 
-export default function AdminPage() {
+export default function AdminPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
   return (
     <section className="p-4 flex flex-col gap-4 md:flex-row">
       {/* MAIN SECTION */}
@@ -37,7 +41,7 @@ export default function AdminPage() {
       </section>
       {/* SIDEBAR SECTION */}
       <aside className="w-full lg:w-1/3 flex flex-col gap-8">
-        <EventCalendar />
+        <EventCalendarContainer searchParams={searchParams} />
         <Announcements />
       </aside>
     </section>
