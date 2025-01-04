@@ -8,7 +8,7 @@ import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
 
 import { FormContainerProps } from "@/components/form-container";
-import { deleteSubject } from "@/lib/actions";
+import { deleteClass, deleteSubject } from "@/lib/actions";
 
 const deleteActionMap = {
   subject: deleteSubject,
@@ -17,7 +17,7 @@ const deleteActionMap = {
   parent: deleteSubject,
   lesson: deleteSubject,
   exam: deleteSubject,
-  class: deleteSubject,
+  class: deleteClass,
   assignment: deleteSubject,
   result: deleteSubject,
   attendance: deleteSubject,
@@ -41,6 +41,10 @@ const SubjectForm = dynamic(() => import("./forms/subject-form"), {
   loading: () => <h1>Loading...</h1>,
 });
 
+const ClassForm = dynamic(() => import("./forms/class-form"), {
+  loading: () => <h1>Loading...</h1>,
+});
+
 const forms: {
   [key: string]: (
     setOpen: Dispatch<SetStateAction<boolean>>,
@@ -57,22 +61,30 @@ const forms: {
       relatedData={relatedData}
     />
   ),
-  teacher: (setOpen, type, data, relatedData) => (
-    <TeacherForm
+  class: (setOpen, type, data, relatedData) => (
+    <ClassForm
       type={type}
       data={data}
       setOpen={setOpen}
       relatedData={relatedData}
     />
   ),
-  student: (setOpen, type, data, relatedData) => (
-    <StudentForm
-      type={type}
-      data={data}
-      setOpen={setOpen}
-      relatedData={relatedData}
-    />
-  ),
+  // teacher: (setOpen, type, data, relatedData) => (
+  //   <TeacherForm
+  //     type={type}
+  //     data={data}
+  //     setOpen={setOpen}
+  //     relatedData={relatedData}
+  //   />
+  // ),
+  // student: (setOpen, type, data, relatedData) => (
+  //   <StudentForm
+  //     type={type}
+  //     data={data}
+  //     setOpen={setOpen}
+  //     relatedData={relatedData}
+  //   />
+  // ),
 };
 
 const FormModal = ({
