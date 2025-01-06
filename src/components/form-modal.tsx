@@ -8,11 +8,11 @@ import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
 
 import { FormContainerProps } from "@/components/form-container";
-import { deleteClass, deleteSubject } from "@/lib/actions";
+import { deleteClass, deleteSubject, deleteTeacher } from "@/lib/actions";
 
 const deleteActionMap = {
   subject: deleteSubject,
-  teacher: deleteSubject,
+  teacher: deleteTeacher,
   student: deleteSubject,
   parent: deleteSubject,
   lesson: deleteSubject,
@@ -69,14 +69,14 @@ const forms: {
       relatedData={relatedData}
     />
   ),
-  // teacher: (setOpen, type, data, relatedData) => (
-  //   <TeacherForm
-  //     type={type}
-  //     data={data}
-  //     setOpen={setOpen}
-  //     relatedData={relatedData}
-  //   />
-  // ),
+  teacher: (setOpen, type, data, relatedData) => (
+    <TeacherForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
   // student: (setOpen, type, data, relatedData) => (
   //   <StudentForm
   //     type={type}
