@@ -184,14 +184,42 @@ export const updateTeacher = async (
   currentState: CurrentState,
   data: TeacherSchema
 ) => {
+  if (!data.id) {
+    return { success: false, error: true };
+  }
+
   try {
+    const client = await clerkClient();
+
+    await client.users.updateUser(data.id, {
+      firstName: data.name,
+      lastName: data.surname,
+      username: data.username,
+      ...(data.password !== "" && { password: data.password }),
+    });
+
     await prisma.teacher.update({
       where: {
         id: data.id,
       },
-      data,
+      data: {
+        username: data.username,
+        name: data.name,
+        surname: data.surname,
+        email: data.email || null,
+        phone: data.phone || null,
+        address: data.address,
+        img: data.img,
+        bloodType: data.bloodType,
+        sex: data.sex,
+        birthday: data.birthday,
+        subjects: {
+          set: data.subjects?.map((subjectId: string) => ({
+            id: Number(subjectId),
+          })),
+        },
+      },
     });
-
     // revalidatePath("/list/teacher");
     return { success: true, error: false };
   } catch (error) {
