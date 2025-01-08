@@ -2,7 +2,7 @@ import { Class, Prisma, Student } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
-import FormModal from "@/components/form-modal";
+import FormContainer from "@/components/form-container";
 import Pagination from "@/components/pagination";
 import Table from "@/components/table";
 import TableSearch from "@/components/table-search";
@@ -47,7 +47,7 @@ const renderRow = async (item: StudentList) => {
             // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-secondary">
             //   <Image src="/delete.png" alt="" width={16} height={16} />
             // </button>
-            <FormModal table="student" type="delete" id={item.id} />
+            <FormContainer table="student" type="delete" id={item.id} />
           )}
         </div>
       </td>
@@ -157,7 +157,7 @@ const StudentListPage = async ({
               // <button className="w-8 h-8 flex items-center justify-center rounded-full bg-tertiary">
               //   <Image src="/plus.png" alt="" width={14} height={14} />
               // </button>
-              <FormModal table="student" type="create" />
+              <FormContainer table="student" type="create" />
             )}
           </div>
         </div>

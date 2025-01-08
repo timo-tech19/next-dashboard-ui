@@ -8,12 +8,17 @@ import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
 
 import { FormContainerProps } from "@/components/form-container";
-import { deleteClass, deleteSubject, deleteTeacher } from "@/lib/actions";
+import {
+  deleteClass,
+  deleteStudent,
+  deleteSubject,
+  deleteTeacher,
+} from "@/lib/actions";
 
 const deleteActionMap = {
   subject: deleteSubject,
   teacher: deleteTeacher,
-  student: deleteSubject,
+  student: deleteStudent,
   parent: deleteSubject,
   lesson: deleteSubject,
   exam: deleteSubject,
@@ -77,14 +82,14 @@ const forms: {
       relatedData={relatedData}
     />
   ),
-  // student: (setOpen, type, data, relatedData) => (
-  //   <StudentForm
-  //     type={type}
-  //     data={data}
-  //     setOpen={setOpen}
-  //     relatedData={relatedData}
-  //   />
-  // ),
+  student: (setOpen, type, data, relatedData) => (
+    <StudentForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
 };
 
 const FormModal = ({
@@ -114,7 +119,7 @@ const FormModal = ({
 
     useEffect(() => {
       if (state.success) {
-        toast(`Subject deleted!`);
+        toast(`${table} deleted!`);
         setOpen(false);
         router.refresh(); // use this to revalidate route path.
       }

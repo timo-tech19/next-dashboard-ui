@@ -8,12 +8,15 @@ import Performance from "@/components/performance";
 import StudentAttendanceCard from "@/components/student-attendance-card";
 import BigCalendarContainer from "@/components/big-calendar-container";
 import prisma from "@/lib/prisma";
+import { getRole } from "@/lib/utils";
+import FormContainer from "@/components/form-container";
 
 const SingleStudentPage = async ({
   params: { id },
 }: {
   params: { id: string };
 }) => {
+  const { role } = await getRole();
   const student = await prisma.student.findUnique({
     where: { id },
     include: {
@@ -50,9 +53,14 @@ const SingleStudentPage = async ({
               />
             </div>
             <div className="w-2/3 flex flex-col justify-between gap-4">
-              <h1 className="text-xl font-semibold">
-                {student.name + " " + student.surname}
-              </h1>
+              <div className="flex items-center gap-4">
+                <h1 className="text-xl font-semibold">
+                  {student.name + " " + student.surname}
+                </h1>
+                {role === "admin" && (
+                  <FormContainer table="student" type="update" data={student} />
+                )}
+              </div>
               <p className="text-sm text-gray-500">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               </p>
