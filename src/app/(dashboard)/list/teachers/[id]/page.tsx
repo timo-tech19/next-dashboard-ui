@@ -3,11 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import Announcements from "@/components/announcements";
-import BigCalendar from "@/components/big-calendar";
-import FormModal from "@/components/form-modal";
 import Performance from "@/components/performance";
-import prisma from "@/lib/prisma";
 import FormContainer from "@/components/form-container";
+import BigCalendarContainer from "@/components/big-calendar-container";
+import prisma from "@/lib/prisma";
 import { getRole } from "@/lib/utils";
 
 const SingleTeacherPage = async ({
@@ -153,7 +152,7 @@ const SingleTeacherPage = async ({
         {/* BOTTOM */}
         <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
           <h1>Teacher&apos;s Schedule</h1>
-          <BigCalendar />
+          <BigCalendarContainer type="teacherId" id={teacher.id} />
         </div>
       </div>
       {/* RIGHT */}
