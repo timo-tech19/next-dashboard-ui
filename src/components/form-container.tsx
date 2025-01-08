@@ -1,5 +1,6 @@
 import FormModal from "@/components/form-modal";
 import prisma from "@/lib/prisma";
+import { getRole } from "@/lib/utils";
 
 export type FormContainerProps = {
   table:
@@ -60,6 +61,17 @@ const FormContainer = async ({ table, type, data, id }: FormContainerProps) => {
         });
 
         relatedData = { classes: studentClasses, grades: studentGrades };
+        break;
+      case "exam":
+        const { role, userId } = await getRole();
+
+        const examLessons = await prisma.lesson.findMany({
+          where: {
+            ...(role === "teacher" ? { teacherId: userId! } : {}),
+          },
+          select: { id: true, name: true },
+        });
+        relatedData = { lessons: examLessons };
         break;
 
       default:

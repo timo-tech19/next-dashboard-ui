@@ -1,12 +1,13 @@
-import FormModal from "@/components/form-modal";
+import Image from "next/image";
+import { Class, Exam, Prisma, Subject, Teacher } from "@prisma/client";
+
+import FormContainer from "@/components/form-container";
 import Pagination from "@/components/pagination";
 import Table from "@/components/table";
 import TableSearch from "@/components/table-search";
 import prisma from "@/lib/prisma";
 import { ITEMS_PER_PAGE } from "@/lib/settings";
 import { getRole } from "@/lib/utils";
-import { Class, Exam, Prisma, Subject, Teacher } from "@prisma/client";
-import Image from "next/image";
 
 type ExamList = Exam & {
   lesson: {
@@ -37,8 +38,8 @@ const renderRow = async (item: ExamList) => {
         <div className="flex items-center gap-2">
           {(role === "admin" || role === "teacher") && (
             <>
-              <FormModal table="exam" type="update" data={item} />
-              <FormModal table="exam" type="delete" id={item.id} />
+              <FormContainer table="exam" type="update" data={item} />
+              <FormContainer table="exam" type="delete" id={item.id} />
             </>
           )}
         </div>
@@ -184,7 +185,7 @@ const ExamListPage = async ({
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {(role === "admin" || role === "teacher") && (
-              <FormModal table="exam" type="create" />
+              <FormContainer table="exam" type="create" />
             )}
           </div>
         </div>
